@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Medium token provider" />
+    <title>Medium Token provider</title>
+
+    <style>
+      .token-info {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translate(0, -50%);
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+      }
+      .token {
+        font-size: 2rem;
+        color: rgb(207, 63, 2);
+      }
+      .date {
+        color: grey;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div id="app-container">
+      <div class="token-info">
+        {{#if error}}
+          <p class="token">Error: {{error}}</p>
+        {{else}}
+          <p class="token">{{token}}</p>
+          <p class="date">{{expires}}</p>
+        {{/if}}
+      </div>
+    </div>
+  </body>
+</html>

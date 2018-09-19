@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Medium token provider" />
+    <title>Medium Token provider</title>
+
+    <style>
+      #token-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        background: rgb(207, 63, 2);
+        border: none;
+        border-radius: 0.5rem;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 2rem;
+      }
+
+      #token-btn:hover {
+        cursor: pointer;
+        background: rgb(182, 55, 2);
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div id="app-container">
+      <a href="https://medium.com/m/oauth/authorize?client_id={{clientId}}&scope={{scope}}&state={{state}}&response_type=code&redirect_uri={{redirectUri}}" id="token-btn" title="Get Medium user token">Get my token</a>
+    </div>
+  </body>
+</html>

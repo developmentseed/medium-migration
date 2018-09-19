@@ -1,0 +1,30 @@
+{
+  "name": "medium-token-getter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": {
+    "name": "Daniel da Silva",
+    "url": "http://danielfdsilva.com"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.12",
+    "hapi": "^17.5.4",
+    "node-fetch": "^2.2.0",
+    "vision": "^5.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}
