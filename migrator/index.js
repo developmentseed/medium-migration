@@ -255,15 +255,17 @@ function moveCardImageToContent (post, content) {
 }
 
 /**
- * Removes the dropcap from the post content.
+ * Removes the liquid classes from the post content.
+ * The liquid way to add classes is {: .classname } and is used for dropcap,
+ * and footnotes
  * Return the content updated.
  *
  * @param {string} content The post content.
  *
  * @returns {string} The updated content.
  */
-function handleDropcap (content) {
-  return content.replace(/{: .dropcap ?}/, '')
+function handleLiquidClasses (content) {
+  return content.replace(/{: .[a-z0-9-_]+ ?}/gm, '')
 }
 
 /**
@@ -451,7 +453,7 @@ async function main () {
     // Add author name to the content.
     content = handlePostAuthors(post, content)
     // Remove dropcap.
-    content = handleDropcap(content)
+    content = handleLiquidClasses(content)
     // Replace liquid codeblocks with backticks.
     content = handleCodeBlocks(content)
     // Remove extra line breaks.
