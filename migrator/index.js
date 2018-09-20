@@ -395,8 +395,8 @@ function getPostsFilesToProcess (fileCompleted) {
   } catch (e) {
     // Assume file doesn't exist.
   }
-  // return glob.sync('posts/**/*.*').filter(f => completed.indexOf(f) === -1)
-  return glob.sync('posts/blog-2018/*.*').filter(f => completed.indexOf(f) === -1).slice(0, 5)
+  return glob.sync('posts/**/*.*').filter(f => completed.indexOf(f) === -1)
+  // return glob.sync('posts/blog-2018/*.*').filter(f => completed.indexOf(f) === -1).slice(0, 5)
 }
 
 //
