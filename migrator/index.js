@@ -422,15 +422,20 @@ async function main () {
   // If we're doing a dryrun use other files.
   // Init the files with any previous completed.
   if (process.argv[2] === '--dryrun') {
+    let fileRedirectContent = ''
+    let fileCompletedContent = ''
+    try {
+      fileRedirectContent = fs.readFileSync(fileRedirect, 'utf8')
+    } catch (error) { }
+    try {
+      fileCompletedContent = fs.readFileSync(fileCompleted, 'utf8')
+    } catch (error) { }
+
     fileRedirect = 'dryrun-redirects.json'
     fileCompleted = 'dryrun-upload-complete.csv'
 
-    try {
-      fs.writeFileSync(fileCompleted, fs.readFileSync('upload-complete.csv', 'utf8'))
-    } catch (error) { }
-    try {
-      fs.writeFileSync(fileRedirect, fs.readFileSync('redirects.csv', 'utf8'))
-    } catch (error) { }
+    fs.writeFileSync(fileRedirect, fileRedirectContent)
+    fs.writeFileSync(fileCompleted, fileCompletedContent)
   }
 
   const files = getPostsFilesToProcess(fileCompleted)
