@@ -399,12 +399,45 @@ function getPostsFilesToProcess (fileCompleted) {
   // return glob.sync('posts/blog-2018/*.*').filter(f => completed.indexOf(f) === -1).slice(0, 5)
 }
 
+/**
+ * Creates the redirect files for DSo
+ * @param {string} dir Export directory.
+ */
+function makeRedirectFiles (dir) {
+  const redirects = fs.readFileSync('redirects.json', 'utf8').split('\n').filter(Boolean)
+  for (const post of redirects) {
+    const data = JSON.parse(post)
+    let fromPath = url.parse(data.from).path
+    if (fromPath[fromPath.length - 1] !== '/') {
+      fromPath += '/'
+    }
+
+    const md = `---
+layout: redirect
+permalink: ${fromPath}
+redirect: ${data.to}
+external: true
+---`
+    const fileName = fromPath
+      .replace(/\/blog\//, '')
+      .replace(/\/$/, '')
+      .replace(/\//g, '-')
+    fs.writeFileSync(path.join(dir, fileName + '.md'), md)
+  }
+}
+
 //
 //
 // MAIN
 //
 async function main () {
-  // In case we want to get the credentials
+  // Make the redirect files.
+  if (process.argv[2] === '--redirects' && process.argv[3]) {
+    makeRedirectFiles(process.argv[3])
+    process.exit(0)
+  }
+
+  // In case we want to get the credentials.
   if (process.argv[2] === '-p' && process.argv[3]) {
     const publicationId = await getMediumPublicationId(await getMediumUserId(), process.argv[3])
     console.log('Publication id:', publicationId)
